@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  elk:
+    image: sebp/elk
+    volumes:
+      - ./logstash/conf.d:/etc/logstash/conf.d
+      - ./logstash/tls/certs:/etc/pki/tls/certs
+      - ./logstash/tls/private:/etc/pki/tls/private
+      - ./elasticsearch/elasticsearch.yml:/etc/elasticsearch/elasticsearch.yml
+      - ./elk-data:/var/lib/elasticsearch
+    environment:
+      - 'TZ=Etc/UTC'
+      #- 'ES_HEAP_SIZE=2g'
+      #- 'LS_HEAP_SIZE=1g'
+    ports:
+      - 5601:5601
+      - 9200:9200
+      - 5044:5044
+volumes:
+  elk-data:
