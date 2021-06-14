@@ -16,5 +16,12 @@ services:
       - 5601:5601
       - 9200:9200
       - 5044:5044
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.13.1
+    user: root
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./logstash/tls/certs/logstash-beats.crt:/etc/pki/tls/certs/logstash-beats.crt
+      - /var/log:/tmp/log
 volumes:
   elk-data:
