@@ -1,2 +1,3 @@
 #Ignore volume data
 /elk-data/
+/nginx/htpasswd.users

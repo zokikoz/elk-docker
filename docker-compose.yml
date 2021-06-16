@@ -23,5 +23,12 @@ services:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./logstash/tls/certs/logstash-beats.crt:/etc/pki/tls/certs/logstash-beats.crt
       - /var/log:/tmp/log
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/kibana.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/htpasswd.users:/etc/nginx/htpasswd.users
+    ports:
+      - 8080:80
 volumes:
   elk-data:
