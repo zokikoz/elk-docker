@@ -1,3 +1,8 @@
-#Ignore volume data
+# Ignore volume data
 /elk-data/
+
+# Ignore authentication file
 /nginx/htpasswd.users
+
+# Ignore override settings
+docker-compose.override.yml

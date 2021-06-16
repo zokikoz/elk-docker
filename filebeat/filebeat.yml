@@ -9,4 +9,7 @@ filebeat.inputs:
     - type: log
       enabled: true
       paths:
-        - /tmp/log/*.log
+        - /tmp/log/auth.log
+      fields:
+        type: 'authlog'
+      fields_under_root: true
