@@ -1,15 +1,23 @@
+#filebeat.modules:
+#  - module: netflow
+#    log:
+#      enabled: true
 output.logstash:
-    enabled: true
-    hosts: ['elk:5044']
-    timeout: 15
-    ssl:
-      certificate_authorities:
+  enabled: true
+  hosts: ['elk:5044']
+  timeout: 15
+  ssl:
+    certificate_authorities:
       - /etc/pki/tls/certs/logstash-beats.crt
 filebeat.inputs:
-    - type: log
-      enabled: true
-      paths:
-        - /tmp/log/auth.log
-      fields:
-        type: 'authlog'
-      fields_under_root: true
+  - type: log
+    enabled: false
+    paths:
+      - /tmp/log/auth.log
+    fields:
+      type: 'authlog'
+    fields_under_root: true
+  - type: netflow
+    enabled: true
+    host: "0.0.0.0:9996"
+    protocols: [ v5, v9 ]

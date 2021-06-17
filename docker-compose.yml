@@ -23,6 +23,8 @@ services:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./logstash/tls/certs/logstash-beats.crt:/etc/pki/tls/certs/logstash-beats.crt
       - /var/log:/tmp/log
+    ports:
+      - 9996:9996/udp
   web:
     image: nginx:alpine
     volumes:
